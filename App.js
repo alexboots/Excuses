@@ -23,7 +23,7 @@ import { StyleSheet, Text, TextInput, View, Button, Image, ScrollView, FlatList 
 const ExcuseList = ({excuseItem}) => {
   return(
     <View style={styles.genericListItem}>
-      <Text>{excuseItem.item}</Text>
+      <Text>{excuseItem.item.value}</Text>
     </View>
   )
 }
@@ -34,7 +34,7 @@ export default function App() {
 
   const handleSetExcuse = (inputText) => setExcuse(inputText)
   const handleAddGoal = () => {
-    setExcuseList( currentExcusesList => [...currentExcusesList, excuse])
+    setExcuseList( currentExcusesList => [...currentExcusesList, { key: Math.random().toString(), value: excuse }])
   }
 
   // useEffect(() => {
@@ -59,7 +59,7 @@ export default function App() {
       <FlatList
         data={excuseList}
         renderItem={(excuseItem) => <ExcuseList excuseItem={excuseItem} />}
-        keyExtractor={(excuseItem) => excuseItem}
+        keyExtractor={(excuseItem) => excuseItem.key}
       />
     </View>
   );
