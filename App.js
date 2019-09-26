@@ -34,12 +34,12 @@ export default function App() {
 
   const handleSetExcuse = (inputText) => setExcuse(inputText)
   const handleAddGoal = () => {
-    setExcuseList( currentExcusesList => [...currentExcusesList, { key: Math.random().toString(), value: excuse }])
+    setExcuseList( currentExcusesList => [...currentExcusesList, { id: Math.random().toString(), value: excuse }])
   }
 
-  // useEffect(() => {
-  //   setExcuse('')
-  // }, [excuseList])
+  useEffect(() => {
+    setExcuse('')
+  }, [excuseList])
 
   return (
     <View style={styles.container}>
@@ -59,7 +59,7 @@ export default function App() {
       <FlatList
         data={excuseList}
         renderItem={(excuseItem) => <ExcuseList excuseItem={excuseItem} />}
-        keyExtractor={(excuseItem) => excuseItem.key}
+        keyExtractor={(excuseItem) => excuseItem.id}
       />
     </View>
   );
