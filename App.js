@@ -1,5 +1,32 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Text, TextInput, View, Button, Image, ScrollView } from 'react-native';
+import { StyleSheet, Text, TextInput, View, Button, Image, ScrollView, FlatList } from 'react-native';
+
+// ScrollView = renders everything in the list, even if not on page
+/* Just put whatever might become scrollable inside of it
+    <ScrollView>
+      { excuseList.map(excuseItem => {
+        if(!excuseItem) return null
+          return(
+            <View style={styles.genericListItem} key={excuseItem}>
+              <Text>{excuseItem}</Text>
+            </View>
+          )
+        })
+      }
+    </ScrollView>
+*/
+
+// FlatList = can be fed infinite data and only deals with what is being rendered
+//   sort of like react-window
+//   need to give a data and a list item to render, so yeah
+
+const ExcuseList = ({excuseItem}) => {
+  return(
+    <View style={styles.genericListItem}>
+      <Text>{excuseItem.item}</Text>
+    </View>
+  )
+}
 
 export default function App() {
   const [excuse, setExcuse] = useState('')
@@ -10,12 +37,12 @@ export default function App() {
     setExcuseList( currentExcusesList => [...currentExcusesList, excuse])
   }
 
-  useEffect(() => {
-    setExcuse('')
-  }, [excuseList])
+  // useEffect(() => {
+  //   setExcuse('')
+  // }, [excuseList])
 
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.viewInputButton}>
         <TextInput
           placeholder="Excuses"
@@ -29,18 +56,12 @@ export default function App() {
           onPress={handleAddGoal}
         />
       </View>
-      <View>
-        { excuseList.map(excuseItem => {
-          if(!excuseItem) return null
-            return(
-              <View style={styles.genericListItem} key={excuseItem}>
-                <Text>{excuseItem}</Text>
-              </View>
-            )
-          })
-        }
-      </View>
-    </ScrollView>
+      <FlatList
+        data={excuseList}
+        renderItem={(excuseItem) => <ExcuseList excuseItem={excuseItem} />}
+        keyExtractor={(excuseItem) => excuseItem}
+      />
+    </View>
   );
 }
 
