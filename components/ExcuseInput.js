@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, TextInput, View, Button } from 'react-native'
 
-export const ExcuseInput = (props) => {
-  const { handleSetExcuse, handleAddGoal, excuse } = props
+export const ExcuseInput = ({handleAddGoal}) => {
+  const [excuse, setExcuse] = useState('')
+  const handleSetExcuse = (inputText) => setExcuse(inputText)
+
   return(
     <View style={styles.viewInputButton}>
       <TextInput
@@ -14,7 +16,7 @@ export const ExcuseInput = (props) => {
       <Button
         title="Add"
         style={styles.button}
-        onPress={handleAddGoal}
+        onPress={() => { handleAddGoal(excuse) }}
       />
     </View>
   )

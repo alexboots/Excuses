@@ -5,25 +5,15 @@ import { ExcuseItem } from 'components/ExcuseItem'
 import { ExcuseInput } from 'components/ExcuseInput'
 
 export default function App() {
-  const [excuse, setExcuse] = useState('')
   const [excuseList, setExcuseList] = useState([])
 
-  const handleSetExcuse = (inputText) => setExcuse(inputText)
-  const handleAddGoal = () => {
+  const handleAddGoal = (excuse) => {
     setExcuseList( currentExcusesList => [...currentExcusesList, { id: Math.random().toString(), value: excuse }])
   }
 
-  useEffect(() => {
-    setExcuse('')
-  }, [excuseList])
-
   return (
     <View style={styles.container}>
-      <ExcuseInput
-        handleSetExcuse={handleSetExcuse}
-        handleAddGoal={handleAddGoal}
-        excuse={excuse}
-      />
+      <ExcuseInput handleAddGoal={handleAddGoal} />
       <FlatList
         data={excuseList}
         renderItem={(excuseItem) => <ExcuseItem excuseItem={excuseItem} />}
