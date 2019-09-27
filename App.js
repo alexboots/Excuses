@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, Text, TextInput, View, Button, Image, ScrollView, FlatList } from 'react-native';
 
+import { ExcuseItem } from 'components/ExcuseItem'
+
 // ScrollView = renders everything in the list, even if not on page
 /* Just put whatever might become scrollable inside of it
     <ScrollView>
@@ -20,13 +22,7 @@ import { StyleSheet, Text, TextInput, View, Button, Image, ScrollView, FlatList 
 //   sort of like react-window
 //   need to give a data and a list item to render, so yeah
 
-const ExcuseList = ({excuseItem}) => {
-  return(
-    <View style={styles.genericListItem}>
-      <Text>{excuseItem.item.value}</Text>
-    </View>
-  )
-}
+
 
 export default function App() {
   const [excuse, setExcuse] = useState('')
@@ -58,7 +54,7 @@ export default function App() {
       </View>
       <FlatList
         data={excuseList}
-        renderItem={(excuseItem) => <ExcuseList excuseItem={excuseItem} />}
+        renderItem={(excuseItem) => <ExcuseItem excuseItem={excuseItem} />}
         keyExtractor={(excuseItem) => excuseItem.id}
       />
     </View>
@@ -80,11 +76,4 @@ const styles = StyleSheet.create({
     padding: 10,
     width: 200
   },
-  genericListItem: {
-    borderColor: 'red',
-    borderWidth: 1,
-    padding: 30,
-    marginVertical: 10,
-    backgroundColor: 'purple',
-  },
-});
+})

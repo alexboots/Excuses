@@ -16,7 +16,8 @@
     "react-navigation": "^4.0.9"
   },
   "devDependencies": {
-    "babel-preset-expo": "^6.0.0"
+    "babel-preset-expo": "^6.0.0",
+    "module-resolver": "^1.0.0"
   },
   "private": true
 }
