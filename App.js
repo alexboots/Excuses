@@ -11,12 +11,16 @@ export default function App() {
     setExcuseList( currentExcusesList => [...currentExcusesList, { id: Math.random().toString(), value: excuse }])
   }
 
+  const handleDelete = () => {
+    console.log('hi')
+  }
+
   return (
     <View style={styles.container}>
       <ExcuseInput handleAddGoal={handleAddGoal} />
       <FlatList
         data={excuseList}
-        renderItem={(excuseItem) => <ExcuseItem excuseItem={excuseItem} />}
+        renderItem={(excuseItem) => <ExcuseItem excuseItem={excuseItem} handleDelete={handleDelete}/>}
         keyExtractor={(excuseItem) => excuseItem.id}
       />
     </View>

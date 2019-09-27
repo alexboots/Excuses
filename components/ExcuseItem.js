@@ -1,11 +1,18 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 
-export const ExcuseItem = ({excuseItem}) => {
+export const ExcuseItem = ({excuseItem, handleDelete}) => {
   return(
-    <View style={styles.genericListItem}>
-      <Text>{excuseItem.item.value}</Text>
-    </View>
+    <TouchableOpacity
+      activeOpacity={.8}
+      onPress={handleDelete}
+    >
+      <View
+        style={styles.genericListItem}
+      >
+        <Text>{excuseItem.item.value}</Text>
+      </View>
+    </TouchableOpacity>
   )
 }
 
