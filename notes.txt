@@ -1,0 +1,20 @@
+// ScrollView = renders everything in the list, even if not on page
+/* Just put whatever might become scrollable inside of it
+    <ScrollView>
+      { excuseList.map(excuseItem => {
+        if(!excuseItem) return null
+          return(
+            <View style={styles.genericListItem} key={excuseItem}>
+              <Text>{excuseItem}</Text>
+            </View>
+          )
+        })
+      }
+    </ScrollView>
+*/
+
+// FlatList = can be fed infinite data and only deals with what is being rendered
+//   sort of like react-window
+//   need to give a data and a list item to render, so yeah
+
+
