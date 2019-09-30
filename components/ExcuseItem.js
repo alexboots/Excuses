@@ -1,16 +1,16 @@
 import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 
-export const ExcuseItem = ({excuseItem, handleDelete}) => {
+export const ExcuseItem = ({excuse, handleDelete}) => {
   return(
     <TouchableOpacity
       activeOpacity={.8}
-      onPress={handleDelete}
+      onPress={() => handleDelete(excuse.item.excuseId)}
     >
       <View
         style={styles.genericListItem}
       >
-        <Text>{excuseItem.item.value}</Text>
+        <Text>{excuse.item.value}</Text>
       </View>
     </TouchableOpacity>
   )

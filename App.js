@@ -8,11 +8,14 @@ export default function App() {
   const [excuseList, setExcuseList] = useState([])
 
   const handleAddGoal = (excuse) => {
-    setExcuseList( currentExcusesList => [...currentExcusesList, { id: Math.random().toString(), value: excuse }])
+    setExcuseList( currentExcusesList => [...currentExcusesList, { excuseId: Math.random().toString(), value: excuse }])
   }
 
-  const handleDelete = () => {
-    console.log('hi')
+  const handleDelete = (excuseId) => {
+    console.log('excuseId', excuseId);
+    setExcuseList( currentExcusesList => {
+      return currentExcusesList.filter((excuse => excuse.excuseId !== excuseId))
+    })
   }
 
   return (
@@ -20,8 +23,8 @@ export default function App() {
       <ExcuseInput handleAddGoal={handleAddGoal} />
       <FlatList
         data={excuseList}
-        renderItem={(excuseItem) => <ExcuseItem excuseItem={excuseItem} handleDelete={handleDelete}/>}
-        keyExtractor={(excuseItem) => excuseItem.id}
+        renderItem={(excuse) => <ExcuseItem excuse={excuse} handleDelete={handleDelete}/>}
+        keyExtractor={(excuseItem) => excuseItem.excuseId}
       />
     </View>
   );
