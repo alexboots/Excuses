@@ -1,18 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { StyleSheet, Text, TextInput, View, Button, Image, ScrollView, FlatList } from 'react-native'
+import { StyleSheet, View, Button, FlatList } from 'react-native'
 
 import { ExcuseItem } from 'components/ExcuseItem'
 import { ExcuseInput } from 'components/ExcuseInput'
 
 export default function App() {
   const [excuseList, setExcuseList] = useState([])
+  const [showAddModal, setShowAddModal] = useState(false)
 
   const handleAddGoal = (excuse) => {
+    setShowAddModal(false)
     setExcuseList( currentExcusesList => [...currentExcusesList, { excuseId: Math.random().toString(), value: excuse }])
   }
 
   const handleDelete = (excuseId) => {
-    console.log('excuseId', excuseId);
     setExcuseList( currentExcusesList => {
       return currentExcusesList.filter((excuse => excuse.excuseId !== excuseId))
     })
@@ -20,7 +21,8 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <ExcuseInput handleAddGoal={handleAddGoal} />
+      <Button title="Add New Goal" onPress={()=>{ setShowAddModal(true) }}/>
+      <ExcuseInput handleAddGoal={handleAddGoal} showAddModal={showAddModal} />
       <FlatList
         data={excuseList}
         renderItem={(excuse) => <ExcuseItem excuse={excuse} handleDelete={handleDelete}/>}
