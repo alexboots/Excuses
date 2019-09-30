@@ -1,9 +1,14 @@
 import React, { useState } from 'react'
 import { StyleSheet, TextInput, View, Button, Modal } from 'react-native'
 
-export const ExcuseInput = ({handleAddGoal, showAddModal}) => {
+export const ExcuseInput = ({handleAddGoal, showAddModal, setShowAddModal}) => {
   const [excuse, setExcuse] = useState('')
   const handleSetExcuse = (inputText) => setExcuse(inputText)
+
+  const addGoal = () => {
+    handleAddGoal(excuse)
+    handleSetExcuse('')
+  }
 
   return(
     <Modal visible={showAddModal} animationType="slide" style={styles.modal}>
@@ -17,8 +22,9 @@ export const ExcuseInput = ({handleAddGoal, showAddModal}) => {
         <Button
           title="Add"
           style={styles.button}
-          onPress={() => { handleAddGoal(excuse) }}
+          onPress={() => { addGoal() }}
         />
+        <Button title="Cancel" color="red" onPress={() => { setShowAddModal(false) }} />
       </View>
     </Modal>
   )

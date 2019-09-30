@@ -22,7 +22,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Button title="Add New Goal" onPress={()=>{ setShowAddModal(true) }}/>
-      <ExcuseInput handleAddGoal={handleAddGoal} showAddModal={showAddModal} />
+      <ExcuseInput handleAddGoal={handleAddGoal} showAddModal={showAddModal} setShowAddModal={setShowAddModal} />
       <FlatList
         data={excuseList}
         renderItem={(excuse) => <ExcuseItem excuse={excuse} handleDelete={handleDelete}/>}
